@@ -35,19 +35,7 @@
         "numberOfWorkers": {
             "type": "string"
         },
-        "currentStack": {
-            "type": "string"
-        },
-        "phpVersion": {
-            "type": "string"
-        },
-        "netFrameworkVersion": {
-            "type": "string"
-        },
-        "repoUrl": {
-            "type": "string"
-        },
-        "branch": {
+        "linuxFxVersion": {
             "type": "string"
         }
     },
@@ -66,58 +54,19 @@
                 "name": "[parameters('name')]",
                 "siteConfig": {
                     "appSettings": [],
-                    "metadata": [
-                        {
-                            "name": "CURRENT_STACK",
-                            "value": "[parameters('currentStack')]"
-                        }
-                    ],
-                    "phpVersion": "[parameters('phpVersion')]",
-                    "netFrameworkVersion": "[parameters('netFrameworkVersion')]",
+                    "linuxFxVersion": "[parameters('linuxFxVersion')]",
                     "alwaysOn": "[parameters('alwaysOn')]"
                 },
                 "serverFarmId": "[concat('/subscriptions/', parameters('subscriptionId'),'/resourcegroups/', parameters('serverFarmResourceGroup'), '/providers/Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]",
-                "clientAffinityEnabled": true
-            },
-            "resources": [
-                {
-                    "type": "sourcecontrols",
-                    "name": "web",
-                    "apiVersion": "2020-12-01",
-                    "properties": {
-                        "RepoUrl": "[parameters('repoUrl')]",
-                        "branch": "[parameters('branch')]",
-                        "IsManualIntegration": false,
-                        "deploymentRollbackEnabled": false,
-                        "isMercurial": false,
-                        "isGitHubAction": true,
-                        "gitHubActionConfiguration": {
-                            "generateWorkflowFile": true,
-                            "workflowSettings": {
-                                "appType": "webapp",
-                                "publishType": "code",
-                                "os": "windows",
-                                "runtimeStack": "dotnet",
-                                "workflowApiVersion": "2020-12-01",
-                                "slotName": "production",
-                                "variables": {
-                                    "runtimeVersion": "5.0.x"
-                                }
-                            }
-                        }
-                    },
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
-                    ]
-                }
-            ]
+                "clientAffinityEnabled": false
+            }
         },
         {
             "apiVersion": "2018-11-01",
             "name": "[parameters('hostingPlanName')]",
             "type": "Microsoft.Web/serverfarms",
             "location": "[parameters('location')]",
-            "kind": "",
+            "kind": "linux",
             "tags": {},
             "dependsOn": [],
             "properties": {
@@ -125,6 +74,7 @@
                 "workerSize": "[parameters('workerSize')]",
                 "workerSizeId": "[parameters('workerSizeId')]",
                 "numberOfWorkers": "[parameters('numberOfWorkers')]",
+                "reserved": true,
                 "zoneRedundant": false
             },
             "sku": {
