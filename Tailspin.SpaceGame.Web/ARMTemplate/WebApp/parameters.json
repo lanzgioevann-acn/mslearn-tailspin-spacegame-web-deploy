@@ -1,5 +1,54 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {}
+    "parameters": {
+        "subscriptionId": {
+            "value": "0a84cb2b-a5f5-4cf2-b83d-d2a7a4521dc6"
+        },
+        "name": {
+            "value": "tailspin-web-app-arm"
+        },
+        "location": {
+            "value": "East Asia"
+        },
+        "hostingPlanName": {
+            "value": "ASP-tailspinrg-a75f"
+        },
+        "serverFarmResourceGroup": {
+            "value": "tailspin-rg"
+        },
+        "alwaysOn": {
+            "value": false
+        },
+        "sku": {
+            "value": "Free"
+        },
+        "skuCode": {
+            "value": "F1"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "workerSizeId": {
+            "value": "0"
+        },
+        "numberOfWorkers": {
+            "value": "1"
+        },
+        "currentStack": {
+            "value": "dotnet"
+        },
+        "phpVersion": {
+            "value": "OFF"
+        },
+        "netFrameworkVersion": {
+            "value": "v5.0"
+        },
+        "repoUrl": {
+            "value": "https://github.com/lanzgioevann-acn/mslearn-tailspin-spacegame-web-deploy"
+        },
+        "branch": {
+            "value": "release"
+        }
+    }
 }

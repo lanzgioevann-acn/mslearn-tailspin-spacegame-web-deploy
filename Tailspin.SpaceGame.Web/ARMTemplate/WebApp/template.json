@@ -3,65 +3,65 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "subscriptionId": {
-            "type": "String"
+            "type": "string"
         },
         "name": {
-            "type": "String"
+            "type": "string"
         },
         "location": {
-            "type": "String"
+            "type": "string"
         },
         "hostingPlanName": {
-            "type": "String"
+            "type": "string"
         },
         "serverFarmResourceGroup": {
-            "type": "String"
+            "type": "string"
         },
         "alwaysOn": {
-            "type": "Bool"
+            "type": "bool"
         },
         "sku": {
-            "type": "String"
+            "type": "string"
         },
         "skuCode": {
-            "type": "String"
+            "type": "string"
         },
         "workerSize": {
-            "type": "String"
+            "type": "string"
         },
         "workerSizeId": {
-            "type": "String"
+            "type": "string"
         },
         "numberOfWorkers": {
-            "type": "String"
+            "type": "string"
         },
         "currentStack": {
-            "type": "String"
+            "type": "string"
         },
         "phpVersion": {
-            "type": "String"
+            "type": "string"
         },
         "netFrameworkVersion": {
-            "type": "String"
+            "type": "string"
         },
         "repoUrl": {
-            "type": "String"
+            "type": "string"
         },
         "branch": {
-            "type": "String"
+            "type": "string"
         }
     },
     "variables": {},
     "resources": [
         {
-            "type": "Microsoft.Web/sites",
             "apiVersion": "2018-11-01",
             "name": "[parameters('name')]",
+            "type": "Microsoft.Web/sites",
             "location": "[parameters('location')]",
+            "tags": {},
             "dependsOn": [
                 "[concat('Microsoft.Web/serverfarms/', parameters('hostingPlanName'))]"
             ],
-            "tags": {},
             "properties": {
                 "name": "[parameters('name')]",
                 "siteConfig": {
@@ -82,11 +82,8 @@
             "resources": [
                 {
                     "type": "sourcecontrols",
-                    "apiVersion": "2020-12-01",
                     "name": "web",
-                    "dependsOn": [
-                        "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
-                    ],
+                    "apiVersion": "2020-12-01",
                     "properties": {
                         "RepoUrl": "[parameters('repoUrl')]",
                         "branch": "[parameters('branch')]",
@@ -108,28 +105,31 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites', parameters('name'))]"
+                    ]
                 }
             ]
         },
         {
-            "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2018-11-01",
             "name": "[parameters('hostingPlanName')]",
+            "type": "Microsoft.Web/serverfarms",
             "location": "[parameters('location')]",
-            "dependsOn": [],
-            "tags": {},
-            "sku": {
-                "Tier": "[parameters('sku')]",
-                "Name": "[parameters('skuCode')]"
-            },
             "kind": "",
+            "tags": {},
+            "dependsOn": [],
             "properties": {
                 "name": "[parameters('hostingPlanName')]",
                 "workerSize": "[parameters('workerSize')]",
                 "workerSizeId": "[parameters('workerSizeId')]",
                 "numberOfWorkers": "[parameters('numberOfWorkers')]",
                 "zoneRedundant": false
+            },
+            "sku": {
+                "Tier": "[parameters('sku')]",
+                "Name": "[parameters('skuCode')]"
             }
         }
     ]
