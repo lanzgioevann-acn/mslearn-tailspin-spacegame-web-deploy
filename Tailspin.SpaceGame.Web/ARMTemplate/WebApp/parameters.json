@@ -12,13 +12,28 @@
             "value": "East Asia"
         },
         "hostingPlanName": {
-            "value": "ASP-tailspinrg-8626"
+            "value": "ASP-tailspinrg-bab8"
         },
         "serverFarmResourceGroup": {
             "value": "tailspin-rg"
         },
         "alwaysOn": {
             "value": false
+        },
+        "sku": {
+            "value": "Basic"
+        },
+        "skuCode": {
+            "value": "B1"
+        },
+        "workerSize": {
+            "value": "0"
+        },
+        "workerSizeId": {
+            "value": "0"
+        },
+        "numberOfWorkers": {
+            "value": "1"
         },
         "linuxFxVersion": {
             "value": "DOTNETCORE|5.0"
