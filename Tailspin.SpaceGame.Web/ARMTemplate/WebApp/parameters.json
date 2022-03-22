@@ -12,28 +12,13 @@
             "value": "East Asia"
         },
         "hostingPlanName": {
-            "value": "ASP-tailspinrg-8d43"
+            "value": "ASP-tailspinspacegamerg-a3d5"
         },
         "serverFarmResourceGroup": {
             "value": "tailspin-rg"
         },
         "alwaysOn": {
             "value": false
-        },
-        "sku": {
-            "value": "Free"
-        },
-        "skuCode": {
-            "value": "F1"
-        },
-        "workerSize": {
-            "value": "0"
-        },
-        "workerSizeId": {
-            "value": "0"
-        },
-        "numberOfWorkers": {
-            "value": "1"
         },
         "linuxFxVersion": {
             "value": "DOTNETCORE|5.0"
