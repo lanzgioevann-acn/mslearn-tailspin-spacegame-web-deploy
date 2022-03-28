@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: tailspinimageaks 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tailspinimageaks
+  template:
+    metadata:
+      labels:
+        app: tailspinimageaks 
+    spec:
+      containers:
+        - name: tailspinimageaks 
+          image: kbsexamplesacr.azurecr.io/tailspinimageaks
+          ports:
+          - containerPort: 80
